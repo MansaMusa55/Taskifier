@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Taskifier App</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+              <!-- Favicons -->
+  <link href="/img/favicon.ico" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/site.css">
+  </head>
+  <body>
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">E-Taskifier</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="page1.html">The App<span class="sr-only">(current)</span></a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page2.html">See The Code</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/MansaMusa55/mortgageCalculator" target="_blank">Get The Code</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://mansamusa.netlify.app" target="_blank">Contact Developer</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  
+  
+    <!-- Begin page content -->
+    <main role="main" class="container">
+        <div class="card text-white bg-primary mt-5">
+            <div class="card-body">
+              <div class="container-fluid">
+    
+        <div class="row">
+           <div class="col-lg-12 text-center">
+               <h1>Create Task<span id="taskCount"></span></h1>
+           </div>
+        </div>
+      </div>
+
+
+
+      <hr>
+      <div class="row">
+      <button class="col-6 btn btn-light" type="button" id="createBtn" data-toggle="modal" data-target="#newTaskItem">Create Task</button>
+      <button class="col-6 btn btn-danger" type="button" id="deleteBtn" onclick="clearTask()">Delete Task</button>
+    </div>
+    <div class="row">
+      <table class="table table-dark table-striped" id="taskData">
+        <thead class="thead-dark">
+          <tr>
+                <th class="d-none"></th>
+                <th>Title</th>
+                <th>Created</th>
+                <th>Due Date</th>
+                <th></th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody">
+<!-- Data Goes Here-->
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    
+    </main>
+
+
+    <footer class="footer ">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Samuel Musa</span></strong>
+        </div>
+      </div>
+    </footer>
+    <template id="Data-template">
+      <tr id="taskRow">
+          <td class="d-none" id="idNumber"></td>
+          <td id="title"></td>
+          <td id="created"></td>
+          <td id="dueDate"></td>
+          <td id="tdBtn">
+
+            <a onclick="completeTask(this)" class="btn btn-sm btn-outline-dark" data-toggle="tooltip" data-placement="left" title="Mark Task Completed"><i class="text-success fas fa-check"></i></a>
+            <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-dark" data-toggle="tooltip" data-placement="top" title="Delete Task"><i class="text-danger fas fa-trash-alt"></i></a>
+          </td>
+      </tr>
+    </template>
+
+    <!-- modal-->
+      <div class="modal" id="newTaskItem">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Add New Task</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <div class="modal-body">
+                  <form onsubmit="createTask(this)" id="formData">
+                    <input type="hidden" name="modalCreate" value="true"/>
+                    <div class="form-group">
+                        <label for="newTitle">Title:</label>
+                        <input type="text" class="form-control" id="newTitle" placeholder="Task Name">
+                    </div>
+                    <div class="form-group">
+                       <label for="newDate">Task Due Date:</label>
+                        <input type="date" class="form-control" id="newDate" placeholder="Due Date">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-block">Create</button>
+                    </div>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+      </div>
+
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/js/site.js"></script>
+    <!-- Button Events-->
+  </body>
+</html>
